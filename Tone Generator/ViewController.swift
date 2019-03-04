@@ -83,6 +83,8 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
         OSC1FreqSlider = AKSlider (property: "OSC1Freq", value: osc1.frequency, range: 10 ... 4000) { sliderValue in
             self.osc1.frequency = sliderValue
         }
+        OSC1FreqSlider.onlyIntegers = true
+        OSC1FreqSlider.textColor = .black
         stackView.addArrangedSubview(OSC1FreqSlider)
         
         // OCS1RotaryKnob = AKRotaryKnob (property: "OCS1RotaryKnob", value: osc2.frequency, range: 10 ... 4000) { sliderValue in
@@ -93,6 +95,8 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
         OSC2FreqSlider = AKSlider (property: "OSC2Freq", value: osc2.frequency, range: 10 ... 4000) { sliderValue in
             self.osc2.frequency = sliderValue
         }
+        OSC2FreqSlider.onlyIntegers = true
+        OSC2FreqSlider.textColor = .black
         stackView.addArrangedSubview(OSC2FreqSlider)
         
         button = AKButton (title: "Button") { press in
