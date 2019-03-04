@@ -13,69 +13,71 @@ import AudioKitUI
 
 
 
-class ViewController: UIViewController {
 
-    var oscillator1 = AKOscillator()
+
+class ViewController: UIViewController, AKKeyboardDelegate  {
+
+    var osc1 = AKOscillator()
     var mixer = AKMixer()
-    
-    
-    @IBOutlet weak var OSC1Switch: UISwitch!
-    @IBOutlet weak var OSC1Waveform: UISegmentedControl!
-    @IBOutlet weak var OSC1Frequency: UIStepper!
-    @IBOutlet weak var OSC1FrequencyLabel: UILabel!
-    
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         
-        mixer = AKMixer(oscillator1)
-        mixer.volume = 0.5
+        mixer = AKMixer (osc1)
         AudioKit.output = mixer
+        try! AudioKit.start()
         
-        oscillator1.amplitude = 0.5
-        oscillator1.rampDuration = 0.1
-        // oscillator1.frequency = OSC1Frequency.value
-        // oscillator1.start()
+        osc1.amplitude = 0.5
+        osc1.rampDuration = 0.1
+        osc1.frequency = 440
+        osc1.start()
         
-        AKSettings.playbackWhileMuted = true
-        
-        do {
-            try AudioKit.start()
-        } catch {
-            print("AudioKit did not start!")
-        }
-        
-        updateOSC1()
+        setupUI()
     }
     
     
-    @IBAction func OSC1changed (sender: AnyObject) {
+    func noteOn(note: MIDINoteNumber) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
-        updateOSC1()
+        
+        osc1.start()
+        osc1.frequency = note.midiNoteToFrequency()
+        print (osc1.frequency)
     }
     
-    func updateOSC1() {
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 0
+    func noteOff(note: MIDINoteNumber) {
+        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         
-        oscillator1.frequency = OSC1Frequency.value
-        OSC1FrequencyLabel.text = formatter.string(from: NSNumber(value: oscillator1.frequency))
-        
-        if OSC1Switch.isOn {
-            oscillator1.start()
-        } else {
-            oscillator1.stop()
-        }
-        
-        
-        
-        
-        print (oscillator1.amplitude, oscillator1.frequency, oscillator1.isStarted)
+        osc1.stop()
     }
-
+    
+    
+    
+    func setupUI () {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let liveview = AKOutputWaveformPlot()
+        stackView.addArrangedSubview(liveview)
+    
+        
+        let keyboardView = AKKeyboardView()
+        keyboardView.delegate = self
+        stackView.addArrangedSubview(keyboardView)
+        
+        
+        view.addSubview(stackView)
+        
+        stackView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
+        
+        stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+    }
+        
 }
 

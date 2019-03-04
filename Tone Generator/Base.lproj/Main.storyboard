@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,60 +17,9 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Rxt-2X-lmb">
-                                <rect key="frame" x="92" y="281.5" width="191" height="104"/>
-                                <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PMK-US-cYa">
-                                        <rect key="frame" x="71" y="0.0" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="OSC1changedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="GYD-1d-pGr"/>
-                                        </connections>
-                                    </switch>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="92Z-33-oxE">
-                                        <rect key="frame" x="0.0" y="39" width="191" height="29"/>
-                                        <segments>
-                                            <segment title="Sine"/>
-                                            <segment title="Square"/>
-                                            <segment title="Triangle"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="OSC1changedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="N8V-bK-Xd7"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hyQ-45-sRE">
-                                        <rect key="frame" x="23.5" y="75" width="144" height="29"/>
-                                        <subviews>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="440" maximumValue="22100" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="jhy-ch-Bgl">
-                                                <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
-                                                <connections>
-                                                    <action selector="OSC1changedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="eAG-3b-Yl0"/>
-                                                </connections>
-                                            </stepper>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6D-uZ-yjf" userLabel="OSC1">
-                                                <rect key="frame" x="102" y="4.5" width="42" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Rxt-2X-lmb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UKg-T7-0vo"/>
-                            <constraint firstItem="Rxt-2X-lmb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yXw-RP-IHl"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="OSC1Frequency" destination="jhy-ch-Bgl" id="zVK-31-cLU"/>
-                        <outlet property="OSC1FrequencyLabel" destination="d6D-uZ-yjf" id="f2e-tu-S7d"/>
-                        <outlet property="OSC1Switch" destination="PMK-US-cYa" id="bRo-Jd-Bpv"/>
-                        <outlet property="OSC1Waveform" destination="92Z-33-oxE" id="T5S-Z5-YhC"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
