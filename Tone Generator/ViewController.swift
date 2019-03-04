@@ -22,11 +22,15 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
     
     var mixer = AKMixer()
     
+    var OCS1RotaryKnob: AKRotaryKnob!
+    
     var OSC1FreqSlider: AKSlider!
     var OSC2FreqSlider: AKSlider!
     
     var OSC1waveform: AKPresetLoaderView!
     var OSC2waveform: AKPresetLoaderView!
+    
+    var button: AKButton!
     
     
     override func viewDidLoad() {
@@ -81,11 +85,23 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
         }
         stackView.addArrangedSubview(OSC1FreqSlider)
         
+        // OCS1RotaryKnob = AKRotaryKnob (property: "OCS1RotaryKnob", value: osc2.frequency, range: 10 ... 4000) { sliderValue in
+        //     self.osc2.frequency = sliderValue
+        // }
+        // stackView.addArrangedSubview(OCS1RotaryKnob)
+        
         OSC2FreqSlider = AKSlider (property: "OSC2Freq", value: osc2.frequency, range: 10 ... 4000) { sliderValue in
             self.osc2.frequency = sliderValue
         }
         stackView.addArrangedSubview(OSC2FreqSlider)
         
+        button = AKButton (title: "Button") { press in
+            print (press.title, "pressed")
+        }
+        stackView.addArrangedSubview(button)
+        
+        
+        /*
         let waveforms = ["Sine", "Square", "Saw"]
         OSC1waveform = AKPresetLoaderView(presets: waveforms) { presets in
             switch presets {
@@ -114,7 +130,7 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
             }
         }
         stackView.addArrangedSubview(OSC2waveform)
-        
+        */
         
         
         
