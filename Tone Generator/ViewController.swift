@@ -38,11 +38,10 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
     
     
     func noteOn(note: MIDINoteNumber) {
-        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)", note.midiNoteToFrequency())
         
         osc1.start()
         osc1.frequency = note.midiNoteToFrequency()
-        print (osc1.frequency)
     }
     
     func noteOff(note: MIDINoteNumber) {
