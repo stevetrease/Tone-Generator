@@ -18,14 +18,22 @@ import AudioKitUI
 class ViewController: UIViewController, AKKeyboardDelegate  {
 
     var osc1 = AKOscillator()
+    var osc2 = AKOscillator()
+    
     var mixer = AKMixer()
+    
+    var OSC1FreqSlider: AKSlider!
+    var OSC2FreqSlider: AKSlider!
+    
+    var OSC1waveform: AKPresetLoaderView!
+    var OSC2waveform: AKPresetLoaderView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         
-        mixer = AKMixer (osc1)
+        mixer = AKMixer (osc1, osc2)
         AudioKit.output = mixer
         try! AudioKit.start()
         
@@ -33,21 +41,27 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
         osc1.rampDuration = 0.1
         osc1.stop()
         
+        osc2.amplitude = 0.5
+        osc2.rampDuration = 0.1
+        osc2.stop()
+        
         setupUI()
     }
     
     
     func noteOn(note: MIDINoteNumber) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)", note.midiNoteToFrequency())
-        
+        print (osc1.frequency)
         osc1.start()
-        osc1.frequency = note.midiNoteToFrequency()
+        osc2.start()
+        // osc1.frequency = note.midiNoteToFrequency()
     }
     
     func noteOff(note: MIDINoteNumber) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         
         osc1.stop()
+        osc2.stop()
     }
     
     
@@ -62,6 +76,47 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
         let liveview = AKOutputWaveformPlot()
         stackView.addArrangedSubview(liveview)
     
+        OSC1FreqSlider = AKSlider (property: "OSC1Freq", value: osc1.frequency, range: 10 ... 4000) { sliderValue in
+            self.osc1.frequency = sliderValue
+        }
+        stackView.addArrangedSubview(OSC1FreqSlider)
+        
+        OSC2FreqSlider = AKSlider (property: "OSC2Freq", value: osc2.frequency, range: 10 ... 4000) { sliderValue in
+            self.osc2.frequency = sliderValue
+        }
+        stackView.addArrangedSubview(OSC2FreqSlider)
+        
+        let waveforms = ["Sine", "Square", "Saw"]
+        OSC1waveform = AKPresetLoaderView(presets: waveforms) { presets in
+            switch presets {
+            case "Sine":
+                let x = 1
+            case "Square":
+                let y = 2
+            case "Saw":
+                let y = 3
+            default:
+                break
+            }
+        }
+        stackView.addArrangedSubview(OSC1waveform)
+        
+        OSC2waveform = AKPresetLoaderView(presets: waveforms) { presets in
+            switch presets {
+            case "Sine":
+                let x = 1
+            case "Square":
+                let y = 2
+            case "Saw":
+                let y = 3
+            default:
+                break
+            }
+        }
+        stackView.addArrangedSubview(OSC2waveform)
+        
+        
+        
         
         let keyboardView = AKKeyboardView()
         keyboardView.delegate = self
