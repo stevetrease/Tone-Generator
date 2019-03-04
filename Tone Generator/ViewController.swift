@@ -31,8 +31,7 @@ class ViewController: UIViewController, AKKeyboardDelegate  {
         
         osc1.amplitude = 0.5
         osc1.rampDuration = 0.1
-        osc1.frequency = 440
-        osc1.start()
+        osc1.stop()
         
         setupUI()
     }
