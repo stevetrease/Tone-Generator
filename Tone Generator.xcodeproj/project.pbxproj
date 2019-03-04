@@ -12,9 +12,12 @@
 		AA01961C222D41990041A434 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA01961A222D41990041A434 /* Main.storyboard */; };
 		AA01961E222D419C0041A434 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA01961D222D419C0041A434 /* Assets.xcassets */; };
 		AA019621222D419C0041A434 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA01961F222D419C0041A434 /* LaunchScreen.storyboard */; };
+		C9662BA475E467B524001AF1 /* Pods_Tone_Generator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D84D53F629F055625011E0A /* Pods_Tone_Generator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D84D53F629F055625011E0A /* Pods_Tone_Generator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tone_Generator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A63662A53C79063C7BD47B7C /* Pods-Tone Generator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tone Generator.debug.xcconfig"; path = "Target Support Files/Pods-Tone Generator/Pods-Tone Generator.debug.xcconfig"; sourceTree = "<group>"; };
 		AA019613222D41990041A434 /* Tone Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tone Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA019616222D41990041A434 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA019618222D41990041A434 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		AA01961D222D419C0041A434 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA019620222D419C0041A434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA019622222D419C0041A434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE0C3E019F14DED9190AB190 /* Pods-Tone Generator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tone Generator.release.xcconfig"; path = "Target Support Files/Pods-Tone Generator/Pods-Tone Generator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9662BA475E467B524001AF1 /* Pods_Tone_Generator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A66EDB700542DEC931CC7FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D84D53F629F055625011E0A /* Pods_Tone_Generator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4CADBED0EFBBDC12E90586C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A63662A53C79063C7BD47B7C /* Pods-Tone Generator.debug.xcconfig */,
+				DE0C3E019F14DED9190AB190 /* Pods-Tone Generator.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AA01960A222D41990041A434 = {
 			isa = PBXGroup;
 			children = (
 				AA019615222D41990041A434 /* Tone Generator */,
 				AA019614222D41990041A434 /* Products */,
+				4CADBED0EFBBDC12E90586C4 /* Pods */,
+				3A66EDB700542DEC931CC7FA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +96,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA019625222D419C0041A434 /* Build configuration list for PBXNativeTarget "Tone Generator" */;
 			buildPhases = (
+				174FB4AFC0DEE5B79195A86A /* [CP] Check Pods Manifest.lock */,
 				AA01960F222D41990041A434 /* Sources */,
 				AA019610222D41990041A434 /* Frameworks */,
 				AA019611222D41990041A434 /* Resources */,
@@ -129,6 +155,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		174FB4AFC0DEE5B79195A86A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tone Generator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA01960F222D41990041A434 /* Sources */ = {
@@ -280,6 +331,7 @@
 		};
 		AA019626222D419C0041A434 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A63662A53C79063C7BD47B7C /* Pods-Tone Generator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +350,7 @@
 		};
 		AA019627222D419C0041A434 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE0C3E019F14DED9190AB190 /* Pods-Tone Generator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
